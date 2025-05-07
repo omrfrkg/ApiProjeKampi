@@ -1,0 +1,70 @@
+﻿@model List<ResultServiceDto>
+@{
+	int count = 0;
+	int delayValue = 300;
+}
+<section id="why-us" class="why-us section light-background">
+
+	<div class="container">
+
+		<div class="row gy-4">
+
+			<div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+				@foreach (var item in Model)
+				{
+					if (item.ServiceId == 2)
+					{
+						<div class="why-box">
+							<h3>@item.Title</h3>
+							<p>
+								@item.Description
+							</p>
+							<div class="text-center">
+								<a href="#" class="more-btn"><span>Learn More</span> <i class="@item.IconUrl"></i></a>
+							</div>
+						</div>
+					}
+				}
+			</div><!-- End Why Box -->
+
+			<div class="col-lg-8 d-flex align-items-stretch">
+				<div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+
+					@foreach (var item in Model)
+					{
+	
+						if (item.ServiceId != 2)
+						{
+							count++;
+							if(count <= 1)
+							{
+								<div class="col-xl-4">
+									<div class="icon-box d-flex flex-column justify-content-center align-items-center">
+										<i class="@item.IconUrl"></i>
+										<h4>@item.Title</h4>
+										<p>@item.Description</p>
+									</div>
+								</div>
+							}
+							else
+							{
+								delayValue = (count == 2) ? 300 : 400;
+								<div class="col-xl-4" data-aos="fade-up" data-aos-delay="@delayValue">
+									<div class="icon-box d-flex flex-column justify-content-center align-items-center">
+										<i class="@item.IconUrl"></i>
+										<h4>@item.Title</h4>
+										<p>@item.Description</p>
+									</div>
+								</div>
+							}
+						}
+					}
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</section>

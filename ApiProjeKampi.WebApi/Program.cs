@@ -8,11 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//Context
 builder.Services.AddDbContext<ApiContext>();
 
+//Validators
 builder.Services.AddScoped<IValidator<Product>, ProductValidator>();
 
+//Mapping
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+
 
 
 builder.Services.AddControllers();
