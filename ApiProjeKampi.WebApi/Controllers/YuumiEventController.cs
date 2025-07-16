@@ -17,22 +17,22 @@ namespace ApiProjeKampi.WebApi.Controllers
         [HttpGet]
         public IActionResult YuumiEventList()
         {
-            var values = _context.YummyEvent.ToList();
+            var values = _context.YummyEvents.ToList();
             return Ok(values);
         }
 
         [HttpPost]
         public IActionResult CreateYuumiEvent(YummyEvent yummyEvent)
         {
-            _context.YummyEvent.Add(yummyEvent);
+            _context.YummyEvents.Add(yummyEvent);
             _context.SaveChanges();
             return Ok("Event ekleme işlemi başarılı!");
         }
 
         [HttpDelete]
         public IActionResult DeleteYuumiEvent(int id) {
-            var values = _context.YummyEvent.Find(id);
-            _context.YummyEvent.Remove(values);
+            var values = _context.YummyEvents.Find(id);
+            _context.YummyEvents.Remove(values);
             _context.SaveChanges();
             return Ok("Event silme işlemi başarılı!");
         }
@@ -40,7 +40,7 @@ namespace ApiProjeKampi.WebApi.Controllers
         [HttpPut]
         public IActionResult UpdateYummyEvent(YummyEvent yummyEvent)
         {
-            _context.YummyEvent.Update(yummyEvent);
+            _context.YummyEvents.Update(yummyEvent);
             _context.SaveChanges();
             return Ok("Event güncelleme işlemi başarılı!");
         }

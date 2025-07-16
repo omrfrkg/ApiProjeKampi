@@ -57,5 +57,14 @@ namespace ApiProjeKampi.WebApi.Controllers
             return Ok("Mesaj Güncelleme İşlemi Başarılı");
         }
 
+        [HttpGet("MessageListByIsReedFalse")]
+        public IActionResult MessageListByIsReedFalse()
+        {
+            var value = _context.Messages.Where(x => x.IsRead == false).ToList();
+            return Ok(value);
+        }
+
+
+
     }
 }

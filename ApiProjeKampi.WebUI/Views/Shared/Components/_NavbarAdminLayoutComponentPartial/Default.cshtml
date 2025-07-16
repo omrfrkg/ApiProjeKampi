@@ -1,0 +1,23 @@
+﻿<div class="navbar-bg"></div>
+
+<nav class="navbar navbar-expand-lg main-navbar sticky">
+
+	<!-- Navbar Form Inline Admin Layout -->
+	@await Component.InvokeAsync("_NavbarFormInlineAdminLayoutComponentPartial")
+	<!-- Navbar Form Inline Admin Layout -->
+
+	<ul class="navbar-nav navbar-right">
+
+		<!-- Navbar Message List Admin Layout -->
+		@await Component.InvokeAsync("_NavbarMessageListAdminLayoutComponentPartial")
+		<!-- Navbar Message List Admin Layout -->
+
+		<!-- Navbar Notification Admin Layout -->
+		@await Component.InvokeAsync("_NavbarNotificationAdminLayoutComponentPartial")
+		<!-- Navbar Notification Admin Layout -->
+
+		<!-- Navbar Account Menu Admin Layout -->
+		@await Component.InvokeAsync("_NavbarAccountMenuAdminLayoutComponentPartial")
+		<!-- Navbar Account Menu Admin Layout -->
+	</ul>
+</nav>
