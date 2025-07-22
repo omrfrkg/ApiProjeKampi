@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using System.Threading.Tasks;
 using ApiProjeKampi.WebUI.Dtos.CategoryDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;

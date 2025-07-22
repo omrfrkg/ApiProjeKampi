@@ -1,0 +1,53 @@
+﻿@model List<ResultProductWithCategoryDto>
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="section">
+	<div class="section-body">
+		<div class="row">
+			<div class="col-12 col-md-12 col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Kategori Listesi</h4>
+					</div>
+					<div class="card-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Ürün Görseli</th>
+									<th scope="col">Ürün Adı</th>
+									<th scope="col">Açıklaması</th>
+									<th scope="col">Fiyatı</th>
+									<th scope="col">Kategorisi</th>
+									<th scope="col">Sil</th>
+									<th scope="col">Güncelle</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<th scope="row">@item.ProductId</th>
+										<td><img src="@item.ImageUrl" height="100" width="150" style="margin-top:10px;"/></td>
+										<td>@item.ProductName</td>
+										<td>@item.Description</td>
+										<td>@item.Price ₺</td>
+										<td>@item.CategoryName</td>
+										<td><a href="/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
+										<td><a href="/Product/UpdateProduct/@item.ProductId" class="btn btn-success">Güncelle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+						<a href="/Product/CreateProduct/" class="btn btn-info">Yeni Ürün Girişi</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+

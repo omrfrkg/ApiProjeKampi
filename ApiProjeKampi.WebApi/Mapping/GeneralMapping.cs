@@ -24,7 +24,10 @@ namespace ApiProjeKampi.WebApi.Mapping
             CreateMap<Message,ResultMessageDto>().ReverseMap();
 
             CreateMap<Product, CreateProductDto>().ReverseMap();
+            CreateMap<Product, GetProductByIdDto>().ReverseMap();
+            CreateMap<Product, UpdateProductDto>().ReverseMap();
             CreateMap<Product, ResultProductWithCategoryDto>().ForMember(x => x.CategoryName, y => y.MapFrom(z => z.Category.CategoryName)).ReverseMap();
+
 
             CreateMap<Service, CreateServiceDto>().ReverseMap();
             CreateMap<Service, GetByIdServiceDto>().ReverseMap();
