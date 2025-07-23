@@ -1,0 +1,55 @@
+﻿@model GetAboutByIdDto
+@{
+    ViewData["Title"] = "UpdateAbout";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="section">
+	<div class="section-body">
+		<div class="row">
+			<div class="col-12 col-md-12 col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Öne Çıkan Alanını Güncelleme Sayfası</h4>
+					</div>
+					<div class="card-body">
+						<form method="post">
+							<div class="form-group">
+								<input type="hidden" asp-for="AboutId" />
+								<label>Başlık</label>
+								<input type="text" class="form-control" asp-for="Title">
+								<br />
+								<label>Alt Başlık - 1</label>
+								<input type="text" class="form-control" asp-for="SubtitleOne">
+								<br />
+								<label>Alt Başlık - 2</label>
+								<input type="text" class="form-control" asp-for="SubtitleTwo">
+								<br />
+								<label>Image Url<code> Lütfen kaydetmek istediğiniz görselin URL uzantısını buraya yapıştırın!</code></label>
+								<input type="text" class="form-control" asp-for="ImageUrl">
+								<br />
+								<label>Video Image Url<code> Video açılmadan önce üzerinde görünecek resimdir. Lütfen kaydetmek istediğiniz görselin URL uzantısını buraya yapıştırın! </code></label>
+								<input type="text" class="form-control" asp-for="VideoCoverImageUrl">
+								<br />
+								<label>Video Url<code> Lütfen kaydetmek istediğiniz videonun URL uzantısını buraya yapıştırın!</code></label>
+								<input type="text" class="form-control" asp-for="VideoUrl">
+								<br />
+								<label>Açıklama</label>
+								<textarea class="summernote" asp-for="Description"></textarea>
+								<br />
+								<label>Rezervasyon Numarası</label>
+								<input type="text" class="form-control" asp-for="ReservationNumber">
+								<br />
+								<button class="btn btn-primary">Hakkımızda Alanını Güncelle</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+

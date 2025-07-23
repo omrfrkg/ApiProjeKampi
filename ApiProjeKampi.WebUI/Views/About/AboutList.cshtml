@@ -1,0 +1,56 @@
+﻿@model List<ResultAboutDto>
+@{
+    ViewData["Title"] = "AboutList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="section">
+	<div class="section-body">
+		<div class="row">
+			<div class="col-12 col-md-12 col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Hakkmızda Alanı</h4>
+					</div>
+					<div class="card-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Metin Görsel</th>
+									<th scope="col">Video Görsel</th>
+									<th scope="col">Başlık</th>
+									<th scope="col">Alt Başlık - 1</th>
+									<th scope="col">Alt Başlık - 2</th>
+									<th scope="col">Video Url</th>
+									<th scope="col">Açıklama</th>
+									<th scope="col">Rezervasyon Numarası</th>
+									<th scope="col">Videoyu Aç</th>
+									<th scope="col">Güncelle</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<th scope="row">@item.AboutId</th>
+										<td><img src="@item.ImageUrl" height="100" width="150" style="margin-top:10px;" /></td>
+										<td><img src="@item.VideoCoverImageUrl" height="100" width="150" style="margin-top:10px;" /></td>
+										<td>@item.Title</td>
+										<td>@item.SubtitleOne</td>
+										<td>@item.SubtitleTwo</td>
+										<td>@item.VideoUrl</td>
+										<td>@item.Description</td>
+										<td>@item.ReservationNumber</td>
+										<td><a href="@item.VideoUrl" class="btn btn-primary">Aç</a></td>
+										<td><a href="/About/UpdateAbout/@item.AboutId" class="btn btn-success">Güncelle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
