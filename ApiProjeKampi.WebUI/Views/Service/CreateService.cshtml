@@ -1,0 +1,37 @@
+﻿@model CreateServiceDto
+@{
+    ViewData["Title"] = "CreateService";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="section">
+	<div class="section-body">
+		<div class="row">
+			<div class="col-12 col-md-12 col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Servis Ekleme Sayfası</h4>
+					</div>
+					<div class="card-body">
+						<form method="post">
+							<div class="form-group">
+								<label>Başlık</label>
+								<input type="text" class="form-control" asp-for="Title">
+								<br />
+								<label>Açıklama</label>
+								<input type="text" class="form-control" asp-for="Description">
+								<br />
+								<label>Icon Url</label>
+								<input type="text" class="form-control" asp-for="IconUrl">
+								<br />
+								<button class="btn btn-primary">Servisi Oluştur</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h6>Not: Icon Listesi için <a href="https://icons.getbootstrap.com/" target="_blank">https://icons.getbootstrap.com/</a> sitesine göz atabilirsiniz!</h6>
+</section>
+

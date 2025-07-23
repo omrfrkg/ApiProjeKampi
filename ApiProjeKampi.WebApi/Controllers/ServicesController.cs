@@ -30,7 +30,7 @@ namespace ApiProjeKampi.WebApi.Controllers
             return Ok("Servis Ekleme İşlemi Başarılı");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteService(int id)
         {
             var value = _context.Services.Find(id);
