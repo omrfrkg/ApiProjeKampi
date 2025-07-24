@@ -1,0 +1,51 @@
+﻿@model List<ResultYummyEventDto>
+@{
+    ViewData["Title"] = "YummyEventList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h4>Etkinlik Listesi</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-md">
+                <tr>
+                    <th>#</th>
+                    <th>Etkinlik Görseli</th>
+                    <th>Başlık</th>
+                    <th>Açıklama</th>
+                    <th>Fiyatı</th>
+                    <th>Etkinlik Görseli Yolu</th>
+                    <th>Etkinlik Durumu</th>
+                    <th>Sil</th>
+                    <th>Güncelle</th>
+                </tr>
+                @foreach(var item in Model){
+                    <tr>
+                        <td>@item.YummyEventId</td>
+                        <td><img src="@item.ImageUrl" height="100" width="150" style="margin-top:10px; align-content:center;"/></td>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price ₺</td>
+                        <td>@item.ImageUrl</td>
+                        <td>
+                            @if(item.Status == false)
+                            {
+                                <a class="btn btn-danger" href="/YummyEvent/YummyEventStatusChangeToTrue/@item.YummyEventId" style="color:white;"> Pasif </a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-success" href="/YummyEvent/YummyEventStatusChangeToFalse/@item.YummyEventId" style="color:white;"> Aktif </a>
+                            }
+                        </td>
+                    <td><a href="/YummyEvent/DeleteYummyEvent/@item.YummyEventId" class="btn btn-danger">Sil</a></td>
+                        <td><a href="/YummyEvent/UpdateYummyEvent/@item.YummyEventId" class="btn btn-warning">Güncelle</a></td>
+                </tr>
+                }
+            </table>
+            <a href="/YummyEvent/CreateYummyEvent" class="btn btn-info">Yeni Etkinlik Ekle</a>
+        </div>
+    </div>
+</div>

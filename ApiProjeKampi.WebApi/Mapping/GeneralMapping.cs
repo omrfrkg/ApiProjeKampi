@@ -5,6 +5,8 @@ using ApiProjeKampi.WebApi.Dtos.MessageDtos;
 using ApiProjeKampi.WebApi.Dtos.NotificationDtos;
 using ApiProjeKampi.WebApi.Dtos.ProductDtos;
 using ApiProjeKampi.WebApi.Dtos.ServiceDtos;
+using ApiProjeKampi.WebApi.Dtos.TestimonialDtos;
+using ApiProjeKampi.WebApi.Dtos.YummyEventDtos;
 using ApiProjeKampi.WebApi.Entities;
 using AutoMapper;
 
@@ -49,6 +51,16 @@ namespace ApiProjeKampi.WebApi.Mapping
             CreateMap<About, GetAboutByIdDto>().ReverseMap();
             CreateMap<About, UpdateAboutDto>().ReverseMap();
             CreateMap<About, ResultAboutDto>().ReverseMap();
+
+            CreateMap<Testimonial, CreateTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, GetByIdTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, UpdateTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, ResultTestimonialDto>().ReverseMap();
+
+            CreateMap<YummyEvent, CreateYummyEventDto>().ForMember(dest => dest.ImageUrl, opt => opt.Ignore()).ReverseMap();
+            CreateMap<YummyEvent, GetYummyEventByIdDto>().ReverseMap();
+            CreateMap<YummyEvent, UpdateYummyEventDto>().ForMember(dest => dest.ImageUrl, opt => opt.Ignore()).ReverseMap();
+            CreateMap<YummyEvent, ResultYummyEventDto>().ReverseMap();
 
         }
     }

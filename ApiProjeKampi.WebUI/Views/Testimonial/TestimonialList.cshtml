@@ -1,0 +1,49 @@
+﻿@model List<ResultTestimonialDto>
+@{
+    ViewData["Title"] = "TestimonialList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="section">
+	<div class="section-body">
+		<div class="row">
+			<div class="col-12 col-md-12 col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Müşteri Yorumları</h4>
+					</div>
+					<div class="card-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Müşteri Görseli</th>
+									<th scope="col">Ad Soyad</th>
+									<th scope="col">Başlık</th>
+									<th scope="col">Yorum</th>
+									<th scope="col">Müşteri Görsel Url</th>
+									<th scope="col">Sil</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<th scope="row">@item.TestimonialId</th>
+										<td><img src ="@item.ImageUrl" height="75" width="100" style="margin-top:10px;"/></td>
+										<td>@item.NameSurname</td>
+										<td>@item.Title</td>
+										<td>@item.Comment</td>
+										<td>@item.ImageUrl</td>
+										<td><a href="/Testimonial/DeleteTestimonial/@item.TestimonialId" class="btn btn-danger">Sil</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+

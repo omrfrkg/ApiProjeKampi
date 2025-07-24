@@ -1,0 +1,51 @@
+﻿@model CreateYummyEventDto
+@{
+    ViewData["Title"] = "CreateYummyEvent";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="section">
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Etkinlik Ekleme Sayfası</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Başlık</label>
+                                <input type="text" class="form-control" asp-for="Title">
+                                <br />
+                                <label>Açıklama</label>
+                                <input type="text" class="form-control" asp-for="Description">
+                                <br />
+                                <label>Görsel</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="ImageFile" asp-for="ImageFile">
+                                    <label class="custom-file-label" for="ImageFile">Dosya Seç</label>
+                                </div>
+                                <br />
+                                <label>Ücret</label>
+                                <input type="text" class="form-control" asp-for="Price">
+                                <br />
+                                <button class="btn btn-primary">Etkinliği Oluştur</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        // Seçilen dosya adını dosya giriş etiketinde güncelleyin
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}
