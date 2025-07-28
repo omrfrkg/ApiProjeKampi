@@ -51,5 +51,25 @@
 </section>
 
 
+@section Scripts {
+	<script>
+		$('#summernote').summernote({
+			callbacks: {
+				onKeydown: function(e) {
+					if (e.keyCode === 13) { // Enter tuşu
+						e.preventDefault(); // Varsayılan davranışı durdur
+						var $p = $('<p><br></p>'); // Yeni paragraf oluştur
+						var range = window.getSelection().getRangeAt(0);
+						range.insertNode($p[0]);
+						range.setStart($p[0], 0);
+						range.setEnd($p[0], 0);
+					}
+				}
+			}
+		});
+	</script>
+}
+
+
 
 

@@ -1,5 +1,6 @@
 ﻿using ApiProjeKampi.WebApi.Dtos.AboutDtos;
 using ApiProjeKampi.WebApi.Dtos.CategoryDtos;
+using ApiProjeKampi.WebApi.Dtos.ChefDtos;
 using ApiProjeKampi.WebApi.Dtos.FeatureDtos;
 using ApiProjeKampi.WebApi.Dtos.MessageDtos;
 using ApiProjeKampi.WebApi.Dtos.NotificationDtos;
@@ -61,6 +62,11 @@ namespace ApiProjeKampi.WebApi.Mapping
             CreateMap<YummyEvent, GetYummyEventByIdDto>().ReverseMap();
             CreateMap<YummyEvent, UpdateYummyEventDto>().ForMember(dest => dest.ImageUrl, opt => opt.Ignore()).ReverseMap();
             CreateMap<YummyEvent, ResultYummyEventDto>().ReverseMap();
+
+            CreateMap<Chef, CreateChefDto>().ForMember(dest => dest.ImageUrl, opt => opt.Ignore()).ReverseMap().ReverseMap();
+            CreateMap<Chef, GetChefByIdDto>().ReverseMap();
+            CreateMap<Chef, UpdateChefDto>().ForMember(dest => dest.ImageUrl, opt => opt.Ignore()).ReverseMap().ReverseMap();
+            CreateMap<Chef, ResultChefDto>().ReverseMap();
 
         }
     }

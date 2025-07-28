@@ -1,6 +1,6 @@
-﻿@model UpdateYummyEventDto
+﻿@model CreateChefDto
 @{
-    ViewData["Title"] = "UpdateYummyEvent";
+    ViewData["Title"] = "CreateChef";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
@@ -10,44 +10,28 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Etkinlik Güncelleme Sayfası</h4>
+                        <h4>Yeni Şef Ekleme Sayfası</h4>
                     </div>
                     <div class="card-body">
                         <form method="post" enctype="multipart/form-data">
-                            <input type="hidden" asp-for="YummyEventId" />
-                            <input type="hidden" asp-for="ExistingImageUrl" />
                             <div class="form-group">
-                                <label>Başlık</label>
+                                <label>Şef Ad ve Soyad</label>
+                                <input type="text" class="form-control" asp-for="NameSurname">
+                                <br />
+                                <label>Ünvan</label>
                                 <input type="text" class="form-control" asp-for="Title">
                                 <br />
                                 <label>Açıklama</label>
                                 <input type="text" class="form-control" asp-for="Description">
                                 <br />
-                                <label>Mevcut Görsel</label>
-                                @if (!string.IsNullOrEmpty(Model.ExistingImageUrl))
-                                {
-                                    <div>
-                                        <img src="@Model.ExistingImageUrl" alt="Mevcut Görsel" style="max-width: 200px;" />
-                                    </div>
-                                }
-                                <br />
-                                <label>Yeni Görsel (isteğe bağlı)</label>
+                                <label>Görsel</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="ImageFile" asp-for="ImageFile">
                                     <label class="custom-file-label" for="ImageFile">Dosya Seç</label>
                                 </div>
                                 <br />
-                                <label>Ücret</label>
-                                <input type="text" class="form-control" asp-for="Price">
                                 <br />
-                                <label>Durum</label>
-                                <select class="form-control" asp-for="Status">
-                                    <option value="true">Aktif</option>
-                                    <option value="false">Pasif</option>
-                                </select>
-                                <br />
-                                <br />
-                                <button class="btn btn-primary">Etkinliği Güncelle</button>
+                                <button class="btn btn-primary">Şefi Ekle</button>
                             </div>
                         </form>
                     </div>
@@ -66,4 +50,5 @@
         });
     </script>
 }
+
 
