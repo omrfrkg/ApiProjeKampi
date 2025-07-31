@@ -1,11 +1,14 @@
 using System.Reflection;
 using ApiProjeKampi.WebApi.Context;
 using ApiProjeKampi.WebApi.Dtos.ProductDtos;
-using ApiProjeKampi.WebApi.Entities;
 using ApiProjeKampi.WebApi.ValidationRules;
 using FluentValidation;
+using SendGrid.Extensions.DependencyInjection;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 
@@ -21,12 +24,18 @@ builder.Services.AddScoped<IValidator<CreateProductDto>, CreateProductValidator>
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 
-
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//SendGrid
+
+builder.Services.AddSendGrid(options =>
+{
+    options.ApiKey = builder.Configuration["SendGrid:ApiKey"];
+});
+
 
 var app = builder.Build();
 

@@ -1,0 +1,140 @@
+﻿@model CreateReservationDto
+
+<section id="book-a-table" class="book-a-table section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Rezervasyon Yapın</h2>
+        <p><span>Rezervasyon Yapın</span> <span class="description-title">Bizimle Kalın<br></span></p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="col-lg-4 reservation-img" style="background-image: url(/yummy-red-1.0.0/assets/img/reservation.jpg);"></div>
+
+            <div class="col-lg-8 d-flex align-items-center reservation-form-bg" data-aos="fade-up" data-aos-delay="200">
+                <form asp-action="CreateReservation" asp-controller="Reservation" method="post" role="form" class="php-email-form" id="reservationForm">
+                    <div class="row gy-4">
+                        <div class="col-lg-4 col-md-6">
+                            <input type="text" name="NameSurname" class="form-control" id="name" placeholder="Adınız ve Soyadınız" required="" asp-for="NameSurname">
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <input type="email" class="form-control" name="Email" id="email" placeholder="Mail Adresiniz" required="" asp-for="Email">
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <input type="text" class="form-control" name="PhoneNumber" id="phone" placeholder="Telefon Numaranız" required="" asp-for="PhoneNumber">
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <input type="date" name="ReservationDate" class="form-control" id="date" placeholder="Date" required="" asp-for="ReservationDate" min="@DateTime.Today.ToString("yyyy-MM-dd")">
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <input type="time" class="form-control" name="ReservationTime" id="time" placeholder="Time" required="" asp-for="ReservationTime">
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <input type="number" class="form-control" name="CountOfPeople" id="people" placeholder="# kişilik" required="" asp-for="CountOfPeople">
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <textarea class="form-control" name="Message" rows="5" placeholder="Mesajınız" asp-for="Message"></textarea>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        @* <div class="loading">Yükleniyor...</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Rezervasyon talebiniz gönderildi. Rezervasyonunuzu onaylamak için sizi arayacağız veya e-posta göndereceğiz. Teşekkür ederiz!</div> *@
+                        <button type="submit">Rezervasyon Yapın</button>
+                    </div>
+                </form>
+            </div><!-- End Reservation Form -->
+
+        </div>
+
+    </div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('reservationForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const form = this; // Form elementini sakla
+
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            Swal.fire({
+                title: "Başarılı!",
+                text: "Rezervasyon talebiniz gönderildi. Rezervasyonunuzu onaylamak için sizi arayacağız veya e-posta göndereceğiz. Teşekkür ederiz!",
+                icon: "success"
+            }).then(() => {
+                form.reset(); // Formu temizle
+
+                // İsteğe bağlı: Tarih ve saat inputlarını varsayılan değerlere döndürme
+                const dateInput = form.querySelector('input[type="date"]');
+                const timeInput = form.querySelector('input[type="time"]');
+                if (dateInput) dateInput.value = '';
+                if (timeInput) timeInput.value = '';
+            });
+        })
+        .catch(error => {
+            Swal.fire({
+                title: "Hata!",
+                text: "Rezervasyon oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.",
+                icon: "error"
+            });
+        });
+    });
+</script>
+
+@* @section Scripts {
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                Swal.fire({
+                    title: "Başarılı!",
+                    text: "Rezervasyon talebiniz gönderildi. Rezervasyonunuzu onaylamak için sizi arayacağız veya e-posta göndereceğiz. Teşekkür ederiz!",
+                    icon: "success"
+                }).then(() => {
+                    window.location.href = '@Url.Action("ReservationList", "Reservation")'; // İsteğe bağlı: Başka bir sayfaya yönlendirme
+                });
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: "Hata!",
+                    text: "Rezervasyon oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.",
+                    icon: "error"
+                });
+            });
+        });
+    </script>
+} *@
+

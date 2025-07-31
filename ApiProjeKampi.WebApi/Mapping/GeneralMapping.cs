@@ -5,6 +5,7 @@ using ApiProjeKampi.WebApi.Dtos.FeatureDtos;
 using ApiProjeKampi.WebApi.Dtos.MessageDtos;
 using ApiProjeKampi.WebApi.Dtos.NotificationDtos;
 using ApiProjeKampi.WebApi.Dtos.ProductDtos;
+using ApiProjeKampi.WebApi.Dtos.ReservationDtos;
 using ApiProjeKampi.WebApi.Dtos.ServiceDtos;
 using ApiProjeKampi.WebApi.Dtos.TestimonialDtos;
 using ApiProjeKampi.WebApi.Dtos.YummyEventDtos;
@@ -67,6 +68,11 @@ namespace ApiProjeKampi.WebApi.Mapping
             CreateMap<Chef, GetChefByIdDto>().ReverseMap();
             CreateMap<Chef, UpdateChefDto>().ForMember(dest => dest.ImageUrl, opt => opt.Ignore()).ReverseMap().ReverseMap();
             CreateMap<Chef, ResultChefDto>().ReverseMap();
+
+            CreateMap<Reservation, CreateReservationDto>().ReverseMap();
+            CreateMap<Reservation, GetReservationByIdDto>().ReverseMap();
+            CreateMap<Reservation, UpdateReservationDto>().ReverseMap();
+            CreateMap<Reservation, ResultReservationDto>().ReverseMap();
 
         }
     }

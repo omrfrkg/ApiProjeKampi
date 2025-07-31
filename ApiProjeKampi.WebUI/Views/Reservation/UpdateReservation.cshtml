@@ -1,0 +1,52 @@
+﻿@model GetReservationByIdDto
+@{
+    ViewData["Title"] = "UpdateReservation";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="section">
+	<div class="section-body">
+		<div class="row">
+			<div class="col-12 col-md-12 col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Kategori Güncelleme Sayfası</h4>
+					</div>
+					<div class="card-body">
+						<form method="post">
+							<div class="form-group">
+								<input type="hidden" asp-for="ReservationId" />
+								<label>Rezervasyon Sahibinin Adı Soyadı</label>
+								<input type="text" class="form-control" asp-for="NameSurname">
+								<br />
+								<label>Rezervasyon Sahibinin Mail Adresi</label>
+								<input type="email" class="form-control" asp-for="Email">
+								<br />
+								<label>Rezervasyon Sahibinin Telefon Numarası</label>
+								<input type="tel" class="form-control" asp-for="PhoneNumber">
+								<br />
+								<label>Rezervasyon Tarihi</label>
+								<input type="date" class="form-control" asp-for="ReservationDate">
+								<br />
+								<label>Rezervasyon Saati</label>
+								<input type="time" class="form-control" asp-for="ReservationTime">
+								<br />
+								<label>Kişi Sayısı</label>
+								<input type="number" class="form-control" asp-for="CountOfPeople">
+								<br />
+								<label>Misafir Mesajı</label>
+								<input type="text" class="form-control" asp-for="Message">
+								<br />
+								<label>Rezervasyon Durumu</label>
+								<input type="text" class="form-control" asp-for="ReservationStatus" readonly>
+								<br />
+								<button class="btn btn-primary">Rezervasyonu Güncelle Güncelle</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+

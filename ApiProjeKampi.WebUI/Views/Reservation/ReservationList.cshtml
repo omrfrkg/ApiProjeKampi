@@ -1,0 +1,109 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IPagedList<ResultReservationDto>
+@{
+	ViewData["Title"] = "ReservationList";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="section">
+	<div class="section-body">
+		<div class="row">
+			<div class="col-12 col-md-12 col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Rezervasyon Listesi</h4>
+					</div>
+					<div class="card-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Rezervasyon Sahibi Ad Soyad</th>
+									<th scope="col">Mail Adresi</th>
+									<th scope="col">Telefon Numarası</th>
+									<th scope="col">Rezervasyon Tarihi</th>
+									<th scope="col">Rezervasyon Saati</th>
+									<th scope="col">Kişi Sayısı</th>
+									<th scope="col">Mesaj</th>
+									<th scope="col">Rezervasyon Durumu</th>
+									<th scope="col">Sil</th>
+									<th scope="col">Güncelle</th>
+									<th scope="col">Rezervasyonu Onayla</th>
+									<th scope="col">Rezervasyonu İptal Et</th>
+									<th scope="col">Rezervasyonu Beklet</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<th scope="row">@item.ReservationId</th>
+										<th>@item.NameSurname</th>
+										<th>@item.Email</th>
+										<th>@item.PhoneNumber</th>
+										<th>@item.ReservationDate.Date.ToShortDateString()</th>
+										<th>@item.ReservationTime</th>
+										<th>@item.CountOfPeople</th>
+										<th>@item.Message</th>
+										@if(item.ReservationStatus == "Onay Bekliyor")
+										{
+											<th><div class="badge badge-warning">@item.ReservationStatus</div></th>
+										}
+										@if (item.ReservationStatus == "Onaylandı")
+										{
+											<th><div class="badge badge-success">@item.ReservationStatus</div></th>
+										}
+										@if (item.ReservationStatus == "İptal Edildi")
+										{
+											<th><div class="badge badge-danger">@item.ReservationStatus</div></th>
+										}
+										<td><a href="/Reservation/DeleteReservation/@item.ReservationId" class="btn btn-danger">Sil</a></td>
+										<td><a href="/Reservation/UpdateReservation/@item.ReservationId" class="btn btn-success">Güncelle</a></td>
+										<td><a href="/Reservation/AcceptReservation/@item.ReservationId" class="btn btn-info">Onayla</a></td>
+										<td><a href="/Reservation/CancelReservation/@item.ReservationId" class="btn btn-dark">İptal Et</a></td>
+										<td><a href="/Reservation/WaitReservation/@item.ReservationId" class="btn btn-warning">Beklet</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+					<div class="card-footer text-right">
+						<nav class="d-inline-block">
+							@Html.PagedListPager(
+								Model,
+								page => Url.Action("ReservationList", new { page }),
+								new X.PagedList.Web.Common.PagedListRenderOptions()
+								{
+								LiElementClasses = new[] { "page-item" },
+								PageClasses = new[] { "page-link" },
+								Display = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded
+								}
+							)
+
+							@* <ul class="pagination mb-0">
+								<li class="page-item disabled">
+									<a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+								</li>
+								<li class="page-item active">
+									<a class="page-link" href="#">
+										1 <span class="sr-only">(current)</span>
+									</a>
+								</li>
+								<li class="page-item">
+									<a class="page-link" href="#">2</a>
+								</li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item">
+									<a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+								</li>
+							</ul> *@
+						</nav>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
