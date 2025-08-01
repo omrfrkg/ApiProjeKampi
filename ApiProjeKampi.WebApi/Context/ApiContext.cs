@@ -23,6 +23,7 @@ namespace ApiProjeKampi.WebApi.Context
         public DbSet<YummyEvent> YummyEvents { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<About> Abouts { get; set; }
+        public DbSet<Gallery> Galleries { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,7 +31,6 @@ namespace ApiProjeKampi.WebApi.Context
             modelBuilder.Entity<Reservation>()
             .Property(r => r.ReservationDate)
             .HasColumnType("date");
-
         }
 
     }

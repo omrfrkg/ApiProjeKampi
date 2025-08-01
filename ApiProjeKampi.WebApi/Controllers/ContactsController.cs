@@ -1,7 +1,7 @@
 ﻿using ApiProjeKampi.WebApi.Context;
 using ApiProjeKampi.WebApi.Dtos.ContactDtos;
 using ApiProjeKampi.WebApi.Entities;
-using Microsoft.AspNetCore.Http;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiProjeKampi.WebApi.Controllers
@@ -11,35 +11,32 @@ namespace ApiProjeKampi.WebApi.Controllers
     public class ContactsController : ControllerBase
     {
         private readonly ApiContext _context;
+        private readonly IMapper _mapper;
 
-        public ContactsController(ApiContext context)
+        public ContactsController(ApiContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult ContactList() { 
             var values = _context.Contacts.ToList();
-            return Ok(values);
+            return Ok(_mapper.Map<List<ResultContactDto>>(values));
         }
 
         [HttpPost]
         public IActionResult CreateContact(CreateContactDto createContactDto)
         {
-            Contact contact = new Contact();
-            contact.Email = createContactDto.Email;
-            contact.Address = createContactDto.Address;
-            contact.Phone = createContactDto.Phone;
-            contact.MapLocation = createContactDto.MapLocation;
-            contact.OpenHours = createContactDto.OpenHours;
+            var value = _mapper.Map<Contact>(createContactDto);
 
-            _context.Contacts.Add(contact);
+            _context.Contacts.Add(value);
             _context.SaveChanges();
 
             return Ok("Ekleme İşlemi Başarılı");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteContact(int id) {
             var values = _context.Contacts.Find(id);
             _context.Contacts.Remove(values);
@@ -50,23 +47,18 @@ namespace ApiProjeKampi.WebApi.Controllers
         [HttpGet("GetContact")]
         public IActionResult GetContact(int id) {
             var value = _context.Contacts.Find(id);
-            return Ok(value);
+            return Ok(_mapper.Map<GetByIdContactDto>(value));
         }
 
         [HttpPut]
         public IActionResult UpdateContact(UpdateContactDto updateContactDto)
         {
-            Contact contact = new Contact();
-            contact.Email = updateContactDto.Email;
-            contact.Address = updateContactDto.Address;
-            contact.Phone = updateContactDto.Phone;
-            contact.MapLocation = updateContactDto.MapLocation;
-            contact.OpenHours = updateContactDto.OpenHours;
-            contact.ContactId = updateContactDto.ContactId;
-            _context.Contacts.Update(contact);
+            var value = _mapper.Map<Contact>(updateContactDto);
+            _context.Contacts.Update(value);
             _context.SaveChanges();
-
             return Ok("Güncelleme İşlemi Başarılı");
         }
+
+
     }
 }
