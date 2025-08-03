@@ -64,7 +64,5 @@ namespace ApiProjeKampi.WebApi.Controllers
             return Ok(value);
         }
 
-
-
     }
 }

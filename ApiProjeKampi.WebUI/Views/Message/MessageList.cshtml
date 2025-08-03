@@ -1,0 +1,84 @@
+﻿@model List<ResultMessageDto>
+@{
+    ViewData["Title"] = "MessageList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="section">
+	<div class="section-body">
+		<div class="row">
+			<div class="col-12 col-md-12 col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Kategori Listesi</h4>
+					</div>
+					<div class="card-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Gönderen Ad - Soyad</th>
+									<th scope="col">Tarih</th>
+									<th scope="col">Email</th>
+									<th scope="col">Konu</th>
+									<th scope="col">Mesaj</th>
+									<th scope="col">Sil</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<th scope="row">@item.MessageId</th>
+										<td>@item.NameSurname</td>
+										<td>@item.SendDate.ToShortDateString()</td>
+										<td>@item.Email</td>
+										<td>@item.Subject</td>
+										<td>@item.MessageDetails</td>
+										<td><a href="#" class="btn btn-danger delete-btn" data-id="@item.MessageId">Sil</a></td>
+
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+@section Scripts{
+	<script>
+		$(document).ready(function() {
+			$(".delete-btn").click(function(e) {
+				e.preventDefault();
+				var messageId = $(this).data("id");
+				var row = $(this).closest("tr");
+
+				if(confirm("Bu mesajı silmek istediğinize emin misiniz?")) {
+					$.ajax({
+						url: '/Message/DeleteMessage/' + messageId,
+						type: 'DELETE',
+						success: function(result) {
+							iziToast.success({
+								title: 'Mesaj İşlemleri!',
+								message: 'Mesaj Silme İşlemi Başarıyla Tamamlandı!',
+								position: 'bottomRight'
+							});
+							row.remove(); // Satırı tablodan kaldır
+						},
+						error: function() {
+							iziToast.error({
+								title: 'Hata!',
+								message: 'Silme işlemi sırasında bir hata oluştu',
+								position: 'bottomRight'
+							});
+						}
+					});
+				}
+			});
+		});
+	</script>
+}
