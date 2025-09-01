@@ -63,6 +63,5 @@ namespace ApiProjeKampi.WebApi.Controllers
             var value = _context.Messages.Where(x => x.IsRead == false).ToList();
             return Ok(value);
         }
-
     }
 }

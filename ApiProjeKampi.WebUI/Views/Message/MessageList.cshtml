@@ -21,8 +21,9 @@
 									<th scope="col">Tarih</th>
 									<th scope="col">Email</th>
 									<th scope="col">Konu</th>
-									<th scope="col">Mesaj</th>
+									<th scope="col">Mesajın Durumu</th>
 									<th scope="col">Sil</th>
+									<th scope="col">Mesajı Aç</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -34,8 +35,9 @@
 										<td>@item.SendDate.ToShortDateString()</td>
 										<td>@item.Email</td>
 										<td>@item.Subject</td>
-										<td>@item.MessageDetails</td>
+										<td>@item.Status</td>
 										<td><a href="#" class="btn btn-danger delete-btn" data-id="@item.MessageId">Sil</a></td>
+										<td><a href="/Message/AnswerMessageWithOpenAI/@item.MessageId" class="btn btn-primary">Mesajı Aç</a></td>
 
 									</tr>
 								}
